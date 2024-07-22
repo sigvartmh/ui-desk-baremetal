@@ -1,0 +1,27 @@
+import { Button, VerticalBox } from "std-widgets.slint";
+
+export global Images {
+	in property <image> logo: @image-url("assets/logo.svg");
+}
+
+export component AppWindow inherits Window {
+    title: "Nordic Semiconductor Stock RSU/PSU motivator";
+    in-out property<int> counter: 42;
+    no-frame: true;
+
+    callback request-increase-value();
+    VerticalBox {
+	Image {
+		source: @image-url("assets/logo.svg");
+		}
+        Text {
+            text: "Counter: \{root.counter}";
+        }
+        Button {
+            text: "Increase value";
+            clicked => {
+                root.request-increase-value();
+            }
+        }
+    }
+}
